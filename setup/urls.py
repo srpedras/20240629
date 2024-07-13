@@ -16,9 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from todos.views import home,todoListar
+from todos.views import todoListarView  #Class Based Views
+from todos.views import todoCriarView
+
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",todoListar)
+    path("admin/", admin.site.urls),
+    # path("", home),
+    # path("", todoListar),
+    path("", todoListarView.as_view(template_name="todos/todolistar.html"),name='todo_listar'),
+    path("criar", todoCriarView.as_view(),name='todo_criar')
 ]
+
